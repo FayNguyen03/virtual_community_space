@@ -5,12 +5,15 @@ import "./dotenv.js";
 
 const createLocationsTable = async ()=> {
     const createTableQuery = `
-        DROP TABLE IF EXISTS locations;
+        DROP TABLE IF EXISTS locations CASCADE;
 
         CREATE TABLE IF NOT EXISTS locations (
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             address VARCHAR(100) NOT NULL,
+            city VARCHAR(100) NOT NULL,
+            state VARCHAR(100) NOT NULL,
+            zip VARCHAR(10) NOT NULL,
             capacity INTEGER NOT NULL,
             img VARCHAR(255) NOT NULL
         );
@@ -27,7 +30,7 @@ const createLocationsTable = async ()=> {
 
 const createEventsTable = async ()=> {
     const createTableQuery = `
-        DROP TABLE IF EXISTS events;
+        DROP TABLE IF EXISTS events CASCADE;
 
         CREATE TABLE IF NOT EXISTS events (
             id SERIAL PRIMARY KEY,
@@ -53,11 +56,14 @@ const seedLocationsTable = async () => {
     await createLocationsTable();
     locationData.forEach((location) => {
         const insertQuery = {
-            text: 'INSERT INTO locations (name, address, capacity, img) VALUES ($1, $2, $3, $4)'
+            text: 'INSERT INTO locations (name, address, city, state, zip, capacity, img) VALUES ($1, $2, $3, $4, $5, $6, $7)'
         };
         const values = [
             location.name,
             location.address,
+            location.city,
+            location.state,
+            location.zip,
             location.capacity,
             location.img
         ];
@@ -99,5 +105,13 @@ const seedEventsTable = async () => {
 
 };
 
-seedLocationsTable();
-seedEventsTable();
+const main = async () => {
+    try {
+        await seedLocationsTable(); 
+        await seedEventsTable();    
+    } catch (err) {
+        console.error('Error seeding database', err)
+    }
+};
+
+main();

@@ -2,9 +2,8 @@ import express from 'express'
 import path from 'path'
 import favicon from 'serve-favicon'
 import dotenv from 'dotenv'
-
-// import the router from your routes file
-
+import eventsRouter from './routes/eventsRouter.js'
+import locationsRouter from './routes/locationsRouter.js'
 
 dotenv.config()
 
@@ -31,6 +30,16 @@ if (process.env.NODE_ENV === 'production') {
     )
 }
 
+//route for the root URL
+app.get("/", (req, res) =>{
+    res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">VCS API</h1>');
+});
+
+
 app.listen(PORT, () => {
     console.log(`server listening on http://localhost:${PORT}`)
-})
+});
+
+app.use("/events", eventsRouter);
+
+app.use("/locations", locationsRouter);
