@@ -24,6 +24,14 @@ const eventData = [
         locationId: 3
     },
     {
+        event: "Born Pink",
+        artist: "BLACKPINK",
+        date: "2025-10-01",
+        time: "15:30:00",
+        img: "https://www.billboard.com/wp-content/uploads/2022/09/02-BLACKPINK-2022-vma-billboard-1548.jpg?w=942&h=628&crop=1",
+        locationId: 1
+    },
+    {
         event: "Ready to Be",
         artist: "TWICE",
         date: "2025-11-15",

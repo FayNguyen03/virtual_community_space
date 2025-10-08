@@ -1,37 +1,50 @@
-import React from 'react'
-import { useRoutes, Link } from 'react-router-dom'
+import {useState, useEffect,React} from 'react'
+import { useRoutes, Link} from 'react-router-dom'
 import Locations from './pages/Locations'
 import LocationEvents from './pages/LocationEvents'
 import Events from './pages/Events'
 import './App.css'
+import LocationsAPI from './services/LocationsAPI'
+
 
 const App = () => {
-  let element = useRoutes([
+  const [locations, setLocations] = useState([])
+  
+  useEffect(() => {
+          (async () => {
+              try {
+                  const locationsData = await LocationsAPI.getAllLocations();  
+                  setLocations(locationsData);
+              }
+              catch (error) {
+                  throw error
+              }
+          }) ()
+      }, [])
+  
+  let locationRoutes = [];
+
+  locations.forEach(element => {
+    locationRoutes.push({
+      path: "/" + element.name.replace(/\s/g, "").replaceAll('.', "").toLowerCase(),
+      element: <LocationEvents index={element.id}/>
+    })
+
+  });
+
+  let routes = [
     {
       path: '/',
       element: <Locations />
     },
     {
-      path: '/one',
-      element: <LocationEvents index={1} />
-    },
-    {
-      path: '/two',
-      element: <LocationEvents index={2} />
-    },
-    {
-      path: '/three',
-      element: <LocationEvents index={3} />
-    },
-    {
-      path: '/four',
-      element: <LocationEvents index={4} />
-    },
-    {
       path: '/events',
       element: <Events />
-    }
-  ])
+    },
+    
+  ].concat(locationRoutes);
+
+  let element = useRoutes(routes);
 
   return (
     <div className='app'>

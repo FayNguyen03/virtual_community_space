@@ -4,7 +4,7 @@ Submitted by: **Khanh Tra Nguyen Tran**
 
 About this web app: **A website displays all the virtual venues and the music concerts.**
 
-Time spent: **7** hours
+Time spent: **8** hours
 
 ## Required Features
 
@@ -27,9 +27,9 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [X] An additional page shows all possible events
-  - [ ] Users can sort *or* filter events by location.
-- [ ] Events display a countdown showing the time remaining before that event
-  - [ ] Events appear with different formatting when the event has passed (ex. negative time, indication the event has passed, crossed out, etc.).
+  - [X] Users can sort *or* filter events by location.
+- [X] Events display a countdown showing the time remaining before that event
+  - [X] Events appear with different formatting when the event has passed (ex. negative time, indication the event has passed, crossed out, etc.).
 
 The following **additional** features are implemented:
 
@@ -39,10 +39,10 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  GIF tool here
+GIF created with Kap
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
@@ -50,7 +50,7 @@ GIF created with ...  GIF tool here
 
 ## Notes
 
-Describe any challenges encountered while building the app or any additional context you'd like to add.
+I was struggling with the routes. I want to specialize each route based on the name of the location.
 
 ## License
 
