@@ -39,7 +39,7 @@ const createEventsTable = async ()=> {
             date DATE NOT NULL,
             time TIME NOT NULL,
             img VARCHAR(255) NOT NULL,
-            locationId INTEGER NOT NULL REFERENCES locations(id)
+            locationId SERIAL NOT NULL REFERENCES locations(id)
         );
     `;
 
@@ -107,10 +107,11 @@ const seedEventsTable = async () => {
 
 const main = async () => {
     try {
-        await seedLocationsTable(); 
-        await seedEventsTable();    
+        await seedLocationsTable();  
+        await seedEventsTable();  
+
     } catch (err) {
-        console.error('Error seeding database', err)
+        console.error('Error seeding locations database', err)
     }
 };
 

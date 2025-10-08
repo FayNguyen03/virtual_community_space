@@ -7,7 +7,7 @@ import locationsRouter from './routes/locationsRouter.js'
 
 dotenv.config()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 const app = express()
 
@@ -20,8 +20,6 @@ else if (process.env.NODE_ENV === 'production') {
     app.use(favicon(path.resolve('public', 'party.png')))
     app.use(express.static('public'))
 }
-
-// specify the api path for the server to use
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -40,6 +38,6 @@ app.listen(PORT, () => {
     console.log(`server listening on http://localhost:${PORT}`)
 });
 
-app.use("/events", eventsRouter);
+app.use("/eventsData", eventsRouter);
 
-app.use("/locations", locationsRouter);
+app.use("/locationsData", locationsRouter);
